@@ -10,12 +10,15 @@ find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 
-# Create executable
+# Create executables
 add_executable(p_controller src/p_controller.cpp)
 ament_target_dependencies(p_controller rclcpp geometry_msgs nav_msgs)
 
-# Install executable
-install(TARGETS p_controller
+add_executable(performance_logger src/performance_logger.cpp)
+ament_target_dependencies(performance_logger rclcpp geometry_msgs nav_msgs)
+
+# Install executables
+install(TARGETS p_controller performance_logger
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files
